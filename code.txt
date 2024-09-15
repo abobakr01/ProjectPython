@@ -1,0 +1,293 @@
+
+# from PyQt5 import QtCore, QtGui, QtWidgets
+# import sys
+
+# class CustomWindow(QtWidgets.QWidget):
+#     def __init__(self):
+#         super().__init__()
+
+#         # إعداد النافذة بدون إطار
+#         self.setWindowTitle("Project")
+#         self.setWindowIcon(QtGui.QIcon('images/th.jpeg'))
+#         self.setGeometry(400, 200, 800, 600)
+#         self.setWindowFlags(QtCore.Qt.FramelessWindowHint)  # إزالة إطار النافذة
+
+#         # إعداد الخلفية باستخدام QLabel
+#         self.background_label = QtWidgets.QLabel(self)
+#         background_pixmap = QtGui.QPixmap('images/download.jpeg')
+#         self.background_label.setPixmap(background_pixmap)
+#         self.background_label.setScaledContents(True)
+#         self.background_label.setGeometry(self.rect())  # ضبط الخلفية على حجم النافذة
+
+#         # إعداد شريط التحكم (زر الإغلاق، التصغير، التكبير)
+#         control_layout = QtWidgets.QHBoxLayout()
+#         control_layout.setContentsMargins(10, 10, 10, 10)
+#         control_layout.setSpacing(10)
+
+#         # زر الإغلاق
+#         close_button = QtWidgets.QPushButton(self)
+#         close_button.setFixedSize(15, 15)
+#         close_button.setStyleSheet("background-color: red; border-radius: 7px;")
+#         close_button.clicked.connect(self.close)
+#         control_layout.addWidget(close_button)
+
+#         # زر التصغير
+#         minimize_button = QtWidgets.QPushButton(self)
+#         minimize_button.setFixedSize(15, 15)
+#         minimize_button.setStyleSheet("background-color: yellow; border-radius: 7px;")
+#         minimize_button.clicked.connect(self.showMinimized)
+#         control_layout.addWidget(minimize_button)
+
+#         # زر التكبير
+#         maximize_button = QtWidgets.QPushButton(self)
+#         maximize_button.setFixedSize(15, 15)
+#         maximize_button.setStyleSheet("background-color: green; border-radius: 7px;")
+#         maximize_button.clicked.connect(self.showMaximized)
+#         control_layout.addWidget(maximize_button)
+
+#         # إعداد تخطيط أفقي لوضع الأزرار في الأعلى
+#         control_widget = QtWidgets.QWidget(self)
+#         control_widget.setLayout(control_layout)
+#         control_layout_container = QtWidgets.QVBoxLayout(self)
+#         control_layout_container.addWidget(control_widget, alignment=QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
+#         control_layout_container.setSpacing(0)
+#         control_layout_container.setContentsMargins(0, 0, 0, 0)
+
+#         # إعداد تخطيط عمودي للأزرار
+#         button_layout = QtWidgets.QVBoxLayout()
+#         button_layout.setContentsMargins(20, 20, 20, 20)
+#         button_layout.setSpacing(20)
+#         button_layout.setAlignment(QtCore.Qt.AlignCenter)
+
+#         # زر "Add Student"
+#         button1 = QtWidgets.QPushButton('Add Student')
+#         button1.setStyleSheet("""
+#             QPushButton {
+#                 padding: 15px 30px;
+#                 border: 2px solid transparent;
+#                 border-radius: 8px;
+#                 font-size: 18px;
+#                 cursor: pointer;
+#                 transition: all 0.3s ease;
+#                 margin: 10px;
+#                 color: white;
+#                 font-weight: bold;
+#                 background-color: #4CAF50;
+#             }
+#             QPushButton:hover {
+#                 transform: scale(1.1);
+#                 border-color: white;
+#             }
+#             QPushButton:pressed {
+#                 background-color: #388E3C;
+#             }
+#         """)
+#         button_layout.addWidget(button1)
+
+#         # زر "Remove Student"
+#         button2 = QtWidgets.QPushButton('Remove Student')
+#         button2.setStyleSheet("""
+#             QPushButton {
+#                 padding: 15px 30px;
+#                 border: 2px solid transparent;
+#                 border-radius: 8px;
+#                 font-size: 18px;
+#                 cursor: pointer;
+#                 transition: all 0.3s ease;
+#                 margin: 10px;
+#                 color: white;
+#                 font-weight: bold;
+#                 background-color: #008CBA;
+#             }
+#             QPushButton:hover {
+#                 transform: scale(1.1);
+#                 border-color: white;
+#             }
+#             QPushButton:pressed {
+#                 background-color: #005f73;
+#             }
+#         """)
+#         button_layout.addWidget(button2)
+
+#         # زر الخروج
+#         exit_button = QtWidgets.QPushButton('Exit')
+#         exit_button.setStyleSheet("""
+#             QPushButton {
+#                 padding: 15px 30px;
+#                 border: 2px solid transparent;
+#                 border-radius: 8px;
+#                 font-size: 18px;
+#                 cursor: pointer;
+#                 transition: all 0.3s ease;
+#                 margin: 10px;
+#                 color: white;
+#                 font-weight: bold;
+#                 background-color: #f44336;
+#             }
+#             QPushButton:hover {
+#                 transform: scale(1.1);
+#                 border-color: white;
+#             }
+#             QPushButton:pressed {
+#                 background-color: #c62828;
+#             }
+#         """)
+#         exit_button.setIcon(QtGui.QIcon("images/logout.jpeg"))
+#         exit_button.setIconSize(QtCore.QSize(20, 20))  # ضبط حجم الأيقونة
+#         exit_button.clicked.connect(sys.exit)
+#         button_layout.addWidget(exit_button)
+
+#         # إعداد تخطيط رئيسي للواجهة
+#         main_layout = QtWidgets.QVBoxLayout(self)
+#         main_layout.addLayout(control_layout_container)
+#         main_layout.addStretch()  # لضمان أن الأزرار تكون في منتصف الشاشة
+#         main_layout.addLayout(button_layout)
+#         main_layout.addStretch()  # لضمان أن الأزرار تكون في منتصف الشاشة
+
+#         self.setLayout(main_layout)
+
+#         # تمكين المستخدم من سحب النافذة بدون إطار
+#         self.oldPos = self.pos()
+
+#     def mousePressEvent(self, event):
+#         if event.button() == QtCore.Qt.LeftButton:
+#             self.oldPos = event.globalPos()
+
+#     def mouseMoveEvent(self, event):
+#         delta = QtCore.QPoint(event.globalPos() - self.oldPos)
+#         self.move(self.x() + delta.x(), self.y() + delta.y())
+#         self.oldPos = event.globalPos()
+
+#     def resizeEvent(self, event):
+#         # تحديث الخلفية عند تغيير حجم النافذة
+#         self.background_label.setGeometry(self.rect())
+#         super().resizeEvent(event)
+
+# # تشغيل التطبيق
+# app = QtWidgets.QApplication(sys.argv)
+# window = CustomWindow()
+# window.show()
+# sys.exit(app.exec_())
+
+
+# from PyQt5 import QtCore, QtGui, QtWidgets
+# import sys
+
+# app = QtWidgets.QApplication(sys.argv)
+
+# # إعداد النافذة
+# homeinterface = QtWidgets.QWidget()
+# homeinterface.resize(800, 600)
+# homeinterface.move(400, 200)
+# homeinterface.setWindowTitle("Project")
+# homeinterface.setWindowIcon(QtGui.QIcon('images\\th.jpeg'))
+# # :/Users/zamzam/Desktop/project//
+# # إعداد خلفية الصورة للواجهة
+# background_pixmap = QtGui.QPixmap('images/download.jpeg')
+# background_label = QtWidgets.QLabel(homeinterface)
+# background_label.setPixmap(background_pixmap)
+# background_label.setScaledContents(True)
+# background_label.setGeometry(homeinterface.rect())  # ملء الواجهة بالكامل
+
+# # إعداد تخطيط عمودي للأزرار مع المحاذاة في المنتصف
+# button_layout = QtWidgets.QVBoxLayout()
+# button_layout.setContentsMargins(20, 20, 20, 20)
+# button_layout.setSpacing(20)
+# button_layout.setAlignment(QtCore.Qt.AlignCenter)
+
+# # زر "Add Student"
+# button1 = QtWidgets.QPushButton('Add Student')
+# button1.setStyleSheet("""
+#     QPushButton {
+#         padding: 15px 30px;
+#         border: 2px solid transparent;
+#         border-radius: 8px;
+#         font-size: 18px;
+#         cursor: pointer;
+#         transition: all 0.3s ease;
+#         margin: 10px;
+#         color: white;
+#         font-weight: bold;
+#         background-color: #4CAF50;
+#     }
+#     QPushButton:hover {
+#         transform: scale(1.1);
+#         border-color: white;
+#     }
+#     QPushButton:pressed {
+#         background-color: #388E3C;
+#     }
+# """)
+# button1.setToolTip('Add a new student')
+# button_layout.addWidget(button1)
+
+# # زر "Remove Student"
+# button2 = QtWidgets.QPushButton('Remove Student')
+# button2.setStyleSheet("""
+#     QPushButton {
+#         padding: 15px 30px;
+#         border: 2px solid transparent;
+#         border-radius: 8px;
+#         font-size: 18px;
+#         cursor: pointer;
+#         transition: all 0.3s ease;
+#         margin: 10px;
+#         color: white;
+#         font-weight: bold;
+#         background-color: #008CBA;
+#     }
+#     QPushButton:hover {
+#         transform: scale(1.1);
+#         border-color: white;
+#     }
+#     QPushButton:pressed {
+#         background-color: #005f73;
+#     }
+# """)
+# button_layout.addWidget(button2)
+
+# # زر الخروج
+# exit_button = QtWidgets.QPushButton('Exit')
+# exit_button.setStyleSheet("""
+#     QPushButton {
+#         padding: 15px 30px;
+#         border: 2px solid transparent;
+#         border-radius: 8px;
+#         font-size: 18px;
+#         cursor: pointer;
+#         transition: all 0.3s ease;
+#         margin: 10px;
+#         color: white;
+#         font-weight: bold;
+#         background-color: #f44336;
+#     }
+#     QPushButton:hover {
+#         transform: scale(1.1);
+#         border-color: white;
+#     }
+#     QPushButton:pressed {
+#         background-color: #c62828;
+#     }
+# """)
+# exit_button.setIcon(QtGui.QIcon("C:/Users/zamzam/Desktop/project/images/logout.jpeg"))
+# exit_button.setIconSize(QtCore.QSize(20, 20))  # ضبط حجم الأيقونة
+# exit_button.clicked.connect(sys.exit)
+# button_layout.addWidget(exit_button)
+
+# # إعداد تخطيط رئيسي للواجهة
+# main_layout = QtWidgets.QVBoxLayout(homeinterface)
+# main_layout.addStretch()  # لضمان أن الأزرار تكون في منتصف الشاشة
+# main_layout.addLayout(button_layout)
+# main_layout.addStretch()  # لضمان أن الأزرار تكون في منتصف الشاشة
+
+# homeinterface.setLayout(main_layout)
+
+# def resizeEvent(event):
+#     # تحديث خلفية الصورة عند تغيير حجم النافذة
+#     background_label.setGeometry(homeinterface.rect())
+#     QtWidgets.QWidget.resizeEvent(homeinterface, event)
+
+# homeinterface.resizeEvent = resizeEvent
+
+# homeinterface.show()
+# sys.exit(app.exec_())
