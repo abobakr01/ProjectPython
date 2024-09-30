@@ -7,9 +7,7 @@ class Student:
         self.email=email
         self.dateOfBirth=dateOfBirth
         self.dateOFEnroll=dateOfEnroll
-def addStudentToDataBase(Studented):
-    return f"{Studented.id}"
-
+    
 
 
 
